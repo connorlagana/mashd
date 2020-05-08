@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import leyla from "./songs/leyla.mp3"
+import firefly from "./songs/firefly.mp3"
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: 69,
+      leylaSong: leyla 
+    };
+  }
+
+  playAudio = () => {
+    var x = this.state.leylaSong
+    x.play()
+  };
+
+  pauseAudio = () => {
+    
+    console.log("next time")
+  };
+  render() {
+    return (
+      <div className="App">
+        <audio className="myAudio">
+          <source src={leyla} type="audio/mpeg" />
+        </audio>
+        {/* <audio className="myAudio">
+          <source src={firefly} type="audio/mpeg" />
+        </audio> */}
+        <button onClick={this.playAudio} type="button">
+          Play Audio
+        </button>
+        <button onClick={this.pauseAudio} type="button">
+          Pause Audio
+        </button>
+        <div>{this.state.timer}</div>
+      </div>
+    );
+  }
 }
 
 export default App;
